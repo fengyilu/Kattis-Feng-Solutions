@@ -33,6 +33,6 @@ for index, seed in enumerate(a):
     seed += 1
     a[index] = seed
     days+=1
-#check the highest number inside of "a" this is the ealiest time when the party can start after max(a) days
+#check the highest number inside of "a" this is the earliest time when the party can start after max(a) days
 output = max(a)
 print(output)

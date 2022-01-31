@@ -8,7 +8,6 @@
 
 # * @version 1.0, 2021-11-08 17:34:36
 
-# * Method : Ad-Hoc 
 
 # # Status : Accepted 
 

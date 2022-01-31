@@ -8,7 +8,7 @@
 
 # * @version 1.0, 2022-01-23 15:59:55
 
-# * Method : Ad-Hoc 
+# * Method : Formular for area calculation of convex polygon
 
 # # Status : Accepted 
 

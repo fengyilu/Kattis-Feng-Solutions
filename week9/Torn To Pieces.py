@@ -8,14 +8,14 @@
 
 # * @version 1.0, 2022-01-14 16:19:24
 
-# * Method : Ad-Hoc 
+# * Method : dijkstra
 
 # # Status : Accepted 
 
 # # Runtime: 0.06*/
 
 
-#building the graph to have all necessary connections of each station
+# function for building the graph to have all necessary connections of each stations
 def build_graph():
     for x in range(no_nodes):
         data = input().split()

@@ -15,9 +15,13 @@
 # # Runtime: 0.26 */
 
 coins = []
+#how many test cases we have 
 test_cases_no = int(input())
+
 while test_cases_no > 0:
+  #filling table with 30001  times "infinity" 
   table = [float('inf')] * 30001
+  #the first index of the array is overwirtten with 0 
   table[0] = 0
 
   # the price we need to pay
@@ -25,11 +29,11 @@ while test_cases_no > 0:
   # the number of coins
   coins_no = int(input())
 
+#filling the coin array
   for i in range(coins_no):
     coins.append(int(input()))
-    # coins = coins + [int(input())]
 
-  # for i in range(coins_no):
+  #iterate through every coin in our coin array
   for coin in coins:
     crt_price = price - 1
     while crt_price >= 0:
@@ -49,6 +53,6 @@ while test_cases_no > 0:
 
   print(i, table[i])
 
-
   test_cases_no -= 1
+  #reset the coins array for next case 
   coins = []

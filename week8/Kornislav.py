@@ -8,8 +8,6 @@
 
 # * @version 1.0, 2021-12-20 15:47:56
 
-# * Method : Ad-Hoc 
-
 # # Status : Accepted 
 
 # # Runtime: 0.05 */
