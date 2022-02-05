@@ -15,30 +15,30 @@
 # # Runtime: 0.11*/
 
 
-# Number of cities
-n = int(input())
+#anzahl an städte
+numberCity = int(input())
 
 # Amount to pick up in city i for each city
 pickups = [int(x) for x in input().split()]
 
-# Number of roads
-m = int(input())
+#anazhl an wege
+numberRoads = int(input())
 
 # Adjacency matrix: index[i][j] stores the weight of the edge from city i to city j
-mtx = [[float('inf') for _ in range(n)]for _ in range(n)]
+matrix = [[float('inf') for _ in range(numberCity)]for _ in range(numberCity)]
 
 # Fill in adjacency matrix
-for _ in range(m):
+for _ in range(numberRoads):
     a, b, d = [int(x) for x in input().split()]
     # Remove 1, because the input starts at 1 not 0
-    mtx[a-1][b-1] = d
+    matrix[a-1][b-1] = d
 
 
 # Initialize dijkstra costs to get to each city, starts with all infinity
-costs = [float('inf') for _ in range(n)]
+costs = [float('inf') for _ in range(numberCity)]
 
 # Will store max amount of items that can collected on the path to each city i
-collected = [0 for _ in range(n)]
+collected = [0 for _ in range(numberCity)]
 
 # Initialize both lists with the first city
 costs[0] = 0
@@ -47,40 +47,33 @@ collected[0] = pickups[0]
 # Set to store all visited cities
 seen = set()
 
-
-def next_node():
-   # Returns the next node to visit. The next node is always the node that has
-   # the lowest cost to get to out of all nodes that have NOT been visited yet.
-   # node_id = None
-
+# Returns the next node to visit. The next node is always the node that has the lowest cost to get to out of all nodes that have NOT been visited yet.node_id = None
+def visit_next_node():
     node_cost = float('inf')
-    for i in range(n):
+    for i in range(numberCity):
         if i not in seen and costs[i]<node_cost:
             node_id = i
             node_cost = costs[i]
     return node_id
 
-idx = next_node()
+not_visited_node = visit_next_node()
 
 # While we still have unvisited nodes:
-while idx is not None:
-    # Calculate the costs to all reachable nodes from the current node idx:
-    # The is just the costs to get to the current node plus the costs from 
-    # that node to each respective node
-    cost_from_idx = [mtx[idx][i] + costs[idx] for i in range(n)] 
-    for i in range(n):
+while not_visited_node is not None:
+    # Calculate the costs to all reachable nodes from the current node not_visited_node: The is just the costs to get to the current node plus the costs from that node to each respective node
+    cost_from_not_visited_node = [matrix[not_visited_node][i] + costs[not_visited_node] for i in range(numberCity)] 
+    for i in range(numberCity):
         # If we found a cheaper way to get to node i:
-        if costs[i] > cost_from_idx[i]:
-            costs[i] = cost_from_idx[i] # update cost to get to node i
+        if costs[i] > cost_from_not_visited_node[i]:
+            costs[i] = cost_from_not_visited_node[i] # update cost to get to node i
             # Set amount of collected items
-            collected[i] = collected[idx] + pickups[i] 
-        # If we didn't find a cheaper way, but a way with the sam cost
-        # and we can collect more items on this way, we will use that amount
-        elif costs[i] == cost_from_idx[i] and \
-            collected[i] < collected[idx] + pickups[i]:
-            collected[i] = collected[idx] + pickups[i]
-    seen.add(idx)
-    idx = next_node()
+            collected[i] = collected[not_visited_node] + pickups[i] 
+        # If we didn't find a cheaper way, but a way with the same cost and we can collect more items on this way, we will use that amount
+        elif costs[i] == cost_from_not_visited_node[i] and \
+            collected[i] < collected[not_visited_node] + pickups[i]:
+            collected[i] = collected[not_visited_node] + pickups[i]
+    seen.add(not_visited_node)
+    not_visited_node = visit_next_node()
 
 
 # If there is no way to the destination node (-1) there will still be infinity
@@ -89,3 +82,7 @@ if costs[-1] == float('inf'):
 else:
     # Otherwise we print the cost and number of collected items of the las node
     print(costs[-1], collected[-1])
+
+
+
+    

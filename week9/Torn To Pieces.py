@@ -2,7 +2,7 @@
 
 # * Problem: Torn To Pieces
 
-# * Link: https://open.kattis.com/contests/rxgmfr/problems/torn2pieces;
+# * Link: https://open.kattis.com/contests/rxgmfr/problems/torn2pieces ;
 
 # * @author: Feng Yi Lu
 
@@ -16,22 +16,28 @@
 
 
 # function for building the graph to have all necessary connections of each stations
-def build_graph():
+def buildingGraph():
     for x in range(no_nodes):
+        #example input "Uptown Midtown"
         data = input().split()
-        child_nodes = {}
+        #we need to know each neighbour of a node
+        childNodes = {}
+        #iterate through input array except the first element in array
         for child in data[1:]:
-            child_nodes[child] = 1
+            childNodes[child] = 1
             if child not in graph:
                 graph[child] = {data[0]: 1}
             else:
                 graph[child].update({data[0]: 1})
 
+        #if first element in input data already exists in graph dictonary, update their neighbours (adding childNodes (key value) pairs into graphs at the key data[0]), 
+        # else: the key of graphs get child_nodes as value
         if data[0] in graph:
-            graph[data[0]].update(child_nodes)
+            graph[data[0]].update(childNodes)
         else:
-            graph[data[0]] = child_nodes
-            for child in child_nodes:
+            graph[data[0]] = childNodes
+        #check every child in child_nodes and do the same, to update each possible neighbour
+            for child in childNodes:
                 if child in graph:
                     graph[child].update({data[0]: 1})
                 else:
@@ -39,45 +45,48 @@ def build_graph():
 
 
 #using the dijkstra algorithm to solve the problem 
-def dijkstra(graph, start, goal):
-    if start not in graph or goal not in graph:
+def dijkstraSolution(graph, startNode, goal):
+    #checking in the beginning if startNode and goal node exists 
+    if startNode not in graph or goal not in graph:
         print("no route found")
         return
 
-    shortest_distance = {}
+    path = {}
     predecessor = {}
-    unseen_nodes = graph
+    not_visited = graph
     infinity = float("inf")
     path = []
-    for node in unseen_nodes:
-        shortest_distance[node] = infinity
-    shortest_distance[start] = 0
+    for node in not_visited:
+        path[node] = infinity
+    path[startNode] = 0
 
-    while unseen_nodes:
-        min_node = None
-        for node in unseen_nodes:
-            if min_node is None:
-                min_node = node
-            elif shortest_distance[node] < shortest_distance[min_node]:
-                min_node = node
+#check every node and possible path and get predecessor of the nodes 
+    while not_visited:
+        currentNode = None
+        for node in not_visited:
+            if currentNode is None:
+                currentNode = node
+            elif path[node] < path[currentNode]:
+                currentNode = node
 
-        for child_node, weight in graph[min_node].items():
-            if weight + shortest_distance[min_node] < shortest_distance[child_node]:
-                shortest_distance[child_node] = weight + shortest_distance[min_node]
-                predecessor[child_node] = min_node
-        unseen_nodes.pop(min_node)
+        for child_node, weight in graph[currentNode].items():
+            if weight + path[currentNode] < path[child_node]:
+                path[child_node] = weight + path[currentNode]
+                predecessor[child_node] = currentNode
+        not_visited.pop(currentNode)
 
     current_node = goal
-    while current_node != start:
+    #starting with goal node and recrate the path backwards until startnode
+    while current_node != startNode:
         try:
             path.insert(0, current_node)
             current_node = predecessor[current_node]
         except KeyError:
             print("no route found")
             break
-    path.insert(0, start)
-    if shortest_distance[goal] != infinity:
-        # print("Shortest distance is " + str(shortest_distance[goal]))
+    path.insert(0, startNode)
+    if path[goal] != infinity:
+        # print("Shortest distance is " + str(path[goal]))
         for i in path:
             print(i, end=" ")
 
@@ -86,7 +95,6 @@ def dijkstra(graph, start, goal):
 
 graph = {}
 no_nodes = int(input())
-build_graph()
-# print(graph)
-start_goal = input().split()
-dijkstra(graph, start_goal[0], start_goal[1])
+buildingGraph()
+startAndEndGoal = input().split()
+dijkstraSolution(graph, startAndEndGoal[0], startAndEndGoal[1])
