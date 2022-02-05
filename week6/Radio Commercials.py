@@ -42,3 +42,6 @@ def maximumRevenue(nums):
     return maxSF
 
 print(maximumRevenue(substracted))
+
+
+

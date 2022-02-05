@@ -4,7 +4,7 @@
 
 # * Link: https://open.kattis.com/problems/threepowers ;
 
-# * @author: Feng Yi Lu
+# * @author: Feng Yi Lu / help of my Brother 
 
 # * @version 1.0, 2021-11-29 13:37:08
 

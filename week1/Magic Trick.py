@@ -15,6 +15,7 @@
 # # Runtime: 0.05 */
 
 data = input()
+#using dictionary for this problem, to map the cards and how many of them there are
 counter = {}
 #checking if we have same letters, as soon if there are two of the same letter we cant say to 100% if something got switch or not (using dictionary)
 for i in data:
