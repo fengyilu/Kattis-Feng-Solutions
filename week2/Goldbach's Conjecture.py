@@ -13,6 +13,7 @@
 # # Status : Accepted 
 
 # # Runtime: 0.75 */
+#representation of a number x as a sum of two primes. 
 
 data = int(input())
 primes = [2] #stores all prime numbers
@@ -23,6 +24,7 @@ for i in range(data):
     output = [] #stores the end output in strings
     #dataNumber is the prime that is given by the problem 
     dataNumber = input()
+    #counts how many representation we have for dataNumber
     counter = 0 
     for num in range(lastInput , int(dataNumber) + 1, 2):
        # all prime numbers are greater than 1

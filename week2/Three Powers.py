@@ -8,14 +8,12 @@
 
 # * @version 1.0, 2021-11-29 13:37:08
 
-# * Method : Ad-Hoc 
-
 # # Status : Accepted 
 
 # # Runtime: 0.10 */
 
 #solving problem with bit shifting
-def print_set(n):
+def set(n):
     shifts = 0
     elements = 0
     print('{', end='')
@@ -30,8 +28,9 @@ def print_set(n):
         shifts += 1
     print(' }')
 
+#breaking condition if input equals 0 
 while True:
     n = int(input())
     if n == 0:
         break
-    print_set(n-1)
+    set(n-1)

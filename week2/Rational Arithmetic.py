@@ -13,16 +13,19 @@
 # # Status : Accepted 
 
 # # Runtime: 0.75 */
+#fraction caluculation between 2 fraction with operator (+,-,/,*), give out the shortest term possible
 
-
+#how many inputs will come
 firstInput = int(input())
+#use recursion to find ggt 
 def ggT(x, y):
    z = x % y
    if z == 0:
       return y
    return ggT(y, z)
    
-for iteration in range(4):
+#using fraction calculation formular to get desired output 
+for iteration in range(firstInput):
     data = input().split()
     if data[2] == "+" or data[2]== "-":
         zaehler1 = int(data[1]) * int(data[3])

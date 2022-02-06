@@ -13,27 +13,27 @@
 # # Status : Accepted 
 
 # # Runtime: 0.08 */
-
+#output the biggest expected extra profit Onid can get by selecting a continuous sequence of commercial breaks.
 
 costs = int(input().split()[1])
 #reading inputs
 inputs = [int(x) for x in input().split()]
-N = len(inputs)
+numberOFCommercialBreaks = len(inputs)
 # Subtract cost for every commercial
 substracted = [x - costs for x in inputs]
 # A constant for minimal value
-MIN = float('-inf')
+minimalValue = float('-inf')
 
 def maximumRevenue(nums):
     # maxEnding =  largest sum continous subsequences from beginning until current element
     maxEndingH = 0
 
     # maxSF = largest continous subsequence "so far" which not includes current element
-    maxSF = MIN
+    maxSF = minimalValue
 
-    for i in range(N):
+    for i in range(numberOFCommercialBreaks):
         maxEndingH = maxEndingH + nums[i]
-   # If current value is greater than maximum ending until here then meh is current value now
+   # If current cost value is greater than maximum ending until here then "maximumEndingH" is current value now
         if maxEndingH < nums[i]:
             maxEndingH = nums[i]
   # If maximum ending until the current element is greater than maximum so far, we say that maxSF is maxEndingH

@@ -2,7 +2,7 @@
 
 # * Problem: How Many Digits?
 
-# * Link: https://open.kattis.com/contests/zr36jo/problems/howmanydigits;
+# * Link: https://open.kattis.com/contests/zr36jo/problems/howmanydigits ;
 
 # * @author: Feng Yi Lu
 
@@ -13,7 +13,7 @@
 # # Status : Accepted 
 
 # # Runtime: 0.13 */
-
+# print the number of digits required to represent n! in base-10
 
 import math
 def generateOutput(n):
@@ -30,7 +30,6 @@ def generateOutput(n):
     #raeding input and define break condition
 while True:
     try:
-        
         n = int(input())
         print(generateOutput(n))
     

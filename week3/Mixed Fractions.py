@@ -12,6 +12,7 @@
 # # Status : Accepted 
 
 # # Runtime: 0.09 */
+# display the resulting mixed fraction as a whole number followed by a proper fraction
 
 #simple math formular to get needed numbers 
 def mixedFraction(dataInputs):

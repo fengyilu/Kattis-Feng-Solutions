@@ -13,6 +13,7 @@
 # # Status : Accepted 
 
 # # Runtime: 0.26 */
+#output total amount paid (in cents), and the total number of coins and bills used.
 
 coins = []
 #how many test cases we have 

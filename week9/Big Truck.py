@@ -13,7 +13,7 @@
 # # Status : Accepted 
 
 # # Runtime: 0.11*/
-
+# output the length of a shortest path from location 1 to location n, followed by the maximum number of items you can pick up along the way.
 
 #anzahl an städte
 numberCity = int(input())
@@ -24,13 +24,13 @@ pickups = [int(x) for x in input().split()]
 #anazhl an wege
 numberRoads = int(input())
 
-# Adjacency matrix: index[i][j] stores the weight of the edge from city i to city j
+# index[i][j] stores the weight of the edge from city i to city j
 matrix = [[float('inf') for _ in range(numberCity)]for _ in range(numberCity)]
 
-# Fill in adjacency matrix
+# Fill matrix
 for _ in range(numberRoads):
     a, b, d = [int(x) for x in input().split()]
-    # Remove 1, because the input starts at 1 not 0
+    #input starts at 1 not 0 => Remove 1 
     matrix[a-1][b-1] = d
 
 
@@ -40,11 +40,11 @@ costs = [float('inf') for _ in range(numberCity)]
 # Will store max amount of items that can collected on the path to each city i
 collected = [0 for _ in range(numberCity)]
 
-# Initialize both lists with the first city
+# start with the first city 
 costs[0] = 0
 collected[0] = pickups[0]
 
-# Set to store all visited cities
+#store all visited cities
 seen = set()
 
 # Returns the next node to visit. The next node is always the node that has the lowest cost to get to out of all nodes that have NOT been visited yet.node_id = None
@@ -76,7 +76,7 @@ while not_visited_node is not None:
     not_visited_node = visit_next_node()
 
 
-# If there is no way to the destination node (-1) there will still be infinity
+# If no way to the destination node in costs[-1] there still will be infinity
 if costs[-1] == float('inf'):
     print("impossible")
 else:
